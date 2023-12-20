@@ -93,9 +93,45 @@ namespace AdventOfCode_2023
             Console.WriteLine($"FirstPart : {lowestLocation}");
         }
 
+        // still too slow
         public override void SecondPart()
         {
+            return;
+            long lowestLocation = long.MaxValue;
+
+            List<long> neededSeeds = getNeededSeeds();
+
+            List<MapLine> seedToSoilMap = buildMap("seed-to-soil");
+            List<MapLine> soilToFertilizerMap = buildMap("soil-to-fertilizer");
+            List<MapLine> fertilizerToWaterMap = buildMap("fertilizer-to-water");
+            List<MapLine> waterToLightMap = buildMap("water-to-light");
+            List<MapLine> lightToTemperatureMap = buildMap("light-to-temperature");
+            List<MapLine> temperatureToHumidityMap = buildMap("temperature-to-humidity");
+            List<MapLine> humidityToLocationMap = buildMap("humidity-to-location");
             
+
+            for (int i = 0; i < neededSeeds.Count; i++)
+            {
+                long rangeStart = neededSeeds[i];
+                i++;
+                long rangeLength = neededSeeds[i];
+
+                for (long seed  = rangeStart; seed < rangeStart + rangeLength; seed++)
+                {
+
+                    long soil = searchValueInMap(seed, seedToSoilMap);
+                    long fertilizer = searchValueInMap(soil, soilToFertilizerMap);
+                    long water = searchValueInMap(fertilizer, fertilizerToWaterMap);
+                    long light = searchValueInMap(water, waterToLightMap);
+                    long temperature = searchValueInMap(light, lightToTemperatureMap);
+                    long humidity = searchValueInMap(temperature, temperatureToHumidityMap);
+                    long location = searchValueInMap(humidity, humidityToLocationMap);
+
+                    if (location < lowestLocation)
+                        lowestLocation = location;
+                }
+            }
+            Console.WriteLine($"SecondPart : {lowestLocation}");
         }
     }
 }
