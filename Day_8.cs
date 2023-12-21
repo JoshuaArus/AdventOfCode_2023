@@ -1,5 +1,4 @@
-﻿
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 
 namespace AdventOfCode_2023
 {
@@ -18,7 +17,7 @@ namespace AdventOfCode_2023
 
             for (int i = 2; i < inputs.Length; i++)
             {
-                Match regex = Regex.Match(inputs[i], @"([A-Z]{3}) = \(([A-Z]{3}), ([A-Z]{3})\)");
+                Match regex = Regex.Match(inputs[i], @"([A-Z0-9]{3}) = \(([A-Z0-9]{3}), ([A-Z0-9]{3})\)");
 
                 network.Add(new Node
                 {
@@ -58,10 +57,38 @@ namespace AdventOfCode_2023
             return steps;
         }
 
-
+        // not working yet
         public override long SecondPart()
         {
-            return -1;
+            long steps = 0;
+            string directions = inputs[0];
+
+            List<Node> network = BuildNetwork();
+
+            List<Node> currentNodes = network.FindAll(n => n.Label.EndsWith("A")).ToList();
+            
+            while (!currentNodes.All(n => n.Label.EndsWith("Z")))
+            {
+                List<Node> newNodes = new List<Node>();
+
+                char nextDirection = directions[(int)(steps % directions.Length)];
+                switch (nextDirection)
+                {
+                    case 'R':
+                        foreach (Node node in currentNodes)
+                            newNodes.Add(network.First(n => n.Label == node.Right));
+                        break;
+                    case 'L':
+                        foreach (Node node in currentNodes)
+                            newNodes.Add(network.First(n => n.Label == node.Left));
+                        break;
+                }
+
+                steps++;
+                currentNodes = newNodes;
+            }
+
+            return steps;
         }
     }
 }
