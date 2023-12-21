@@ -3,7 +3,7 @@ namespace AdventOfCode_2023
 {
     public class Day_3 : Day
     {
-        public override void FirstPart()
+        public override long FirstPart()
         {
             int result = 0;
 
@@ -23,7 +23,7 @@ namespace AdventOfCode_2023
                 }
             }
 
-            Console.WriteLine($"FirstPart : {result}");
+            return result;
         }
 
         private List<string> getSurroundingNumbers(int lineNumber, int colNumber)
@@ -98,7 +98,7 @@ namespace AdventOfCode_2023
             }
         }
 
-        public override void SecondPart()
+        public override long SecondPart()
         {
             int result = 0;
 
@@ -121,7 +121,7 @@ namespace AdventOfCode_2023
                 }
             }
 
-            Console.WriteLine($"SecondPart : {result}");
+            return result;
         }
     }
 }

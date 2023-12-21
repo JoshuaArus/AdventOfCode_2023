@@ -9,7 +9,7 @@ namespace AdventOfCode_2023
 {
     public class Day_2 : Day
     {
-        public override void FirstPart()
+        public override long FirstPart()
         {
             int maxRed = 12;
             int maxGreen = 13;
@@ -53,10 +53,10 @@ namespace AdventOfCode_2023
                 }
             }
 
-            Console.WriteLine($"FirstPart : {gameIdsSum}");
+            return gameIdsSum;
         }
 
-        public override void SecondPart()
+        public override long SecondPart()
         {
             int powerSum = 0;
 
@@ -97,7 +97,7 @@ namespace AdventOfCode_2023
                 powerSum += gamePower;
             }
 
-            Console.WriteLine($"SecondPart : {powerSum}");
+            return powerSum;
         }
     }
 }

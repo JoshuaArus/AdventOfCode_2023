@@ -5,7 +5,7 @@ namespace AdventOfCode_2023
 {
     public class Day_4 : Day
     {
-        public override void FirstPart()
+        public override long FirstPart()
         {
             double result = 0;
 
@@ -27,10 +27,10 @@ namespace AdventOfCode_2023
 
             }
 
-            Console.WriteLine($"FirstPart : {result}");
+            return (long) result;
         }
 
-        public override void SecondPart()
+        public override long SecondPart()
         {
             double result = 0;
 
@@ -61,9 +61,7 @@ namespace AdventOfCode_2023
                 result += kvp.Value;
             }
 
-            
-
-            Console.WriteLine($"SecondPart : {result}");
+            return (long)result;
         }
     }
 }

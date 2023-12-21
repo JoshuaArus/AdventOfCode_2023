@@ -11,8 +11,8 @@
             {
                 //read string from file
                 inputs = File.ReadAllLines(inputName);
-                FirstPart();
-                SecondPart();
+                Console.WriteLine($"FirstPart : {FirstPart()}");
+                Console.WriteLine($"SecondPart : {SecondPart()}");
             } catch (FileNotFoundException e)
             {
                 Console.WriteLine($"Input {inputName} doesn't exist");
@@ -22,7 +22,7 @@
             }
         }
 
-        public abstract void SecondPart();
-        public abstract void FirstPart();
+        public abstract long SecondPart();
+        public abstract long FirstPart();
     }
 }

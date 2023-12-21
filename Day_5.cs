@@ -62,7 +62,7 @@ namespace AdventOfCode_2023
             return res;
         }
 
-        public override void FirstPart()
+        public override long FirstPart()
         {
             long lowestLocation = long.MaxValue;
 
@@ -90,13 +90,13 @@ namespace AdventOfCode_2023
                     lowestLocation = location;
             }
             
-            Console.WriteLine($"FirstPart : {lowestLocation}");
+            return lowestLocation;
         }
 
         // still too slow
-        public override void SecondPart()
+        public override long SecondPart()
         {
-            return;
+            return -1;
             long lowestLocation = long.MaxValue;
 
             List<long> neededSeeds = getNeededSeeds();
@@ -131,7 +131,7 @@ namespace AdventOfCode_2023
                         lowestLocation = location;
                 }
             }
-            Console.WriteLine($"SecondPart : {lowestLocation}");
+            return lowestLocation;
         }
     }
 }

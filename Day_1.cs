@@ -5,7 +5,7 @@ namespace AdventOfCode_2023
     public class Day_1 : Day
     {
         
-        public override void FirstPart()
+        public override long FirstPart()
         {
             long sum = 0;
 
@@ -37,11 +37,10 @@ namespace AdventOfCode_2023
                 sum += long.Parse(inputNumber);
             }
 
-            Console.WriteLine($"First part : {sum}");
+            return sum;
         }
 
-        // not working
-        public override void SecondPart()
+        public override long SecondPart()
         {
             long sum = 0;
             IDictionary<string, string> numbersString = new Dictionary<string, string> 
@@ -100,7 +99,7 @@ namespace AdventOfCode_2023
                 sum += long.Parse(inputNumber);
             }
 
-            Console.WriteLine($"Second part : {sum}");
+            return sum;
         }
     }
 }
