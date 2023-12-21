@@ -1,40 +1,65 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AdventOfCode_2023
+﻿namespace AdventOfCode_2023
 {
     public class Day_6 : Day
     {
         public override long FirstPart()
         {
             long res = 1;
-            List<long> times = inputs[0].Split(":")[1].Trim().Split(" ").Where(t => !string.IsNullOrWhiteSpace(t)).Select(t => long.Parse(t.Trim())).ToList();
-            List<long> records = inputs[1].Split(":")[1].Trim().Split(" ").Where(t => !string.IsNullOrWhiteSpace(t)).Select(t => long.Parse(t.Trim())).ToList();
+            List<long> times = inputs[0]
+                .Split(":")[1]
+                .Trim()
+                .Split(" ")
+                .Where(t => !string.IsNullOrWhiteSpace(t))
+                .Select(t => long.Parse(t.Trim()))
+                .ToList();
+            List<long> records = inputs[1]
+                .Split(":")[1]
+                .Trim()
+                .Split(" ")
+                .Where(t => !string.IsNullOrWhiteSpace(t))
+                .Select(t => long.Parse(t.Trim()))
+                .ToList();
 
             for (int i = 0; i < times.Count; i++)
-            {   
-                long possibleWays = 0;
-
-                for (int j = 0; j < times[i]; j++)
-                {
-                    long boatSpeed = j;
-                    long currentDistance = (times[i] - j) * boatSpeed;
-
-                    if (currentDistance > records[i]) possibleWays++;
-                }
-
-                res *= possibleWays;
-            }
+                res *= CalculatePossibleWays(times[i], records[i]);
 
             return res;
         }
 
         public override long SecondPart()
         {
-            long res = -1;
+            long time = long.Parse(
+                string.Join(
+                    "",
+                    inputs[0]
+                    .Split(":")[1]
+                    .Split(" ")
+                    .Select(t => (t.Trim()))
+                    .Where(t => !string.IsNullOrWhiteSpace(t))));
+
+            long record = long.Parse(
+                string.Join(
+                    "",
+                    inputs[1]
+                    .Split(":")[1]
+                    .Split(" ")
+                    .Select(t => (t.Trim()))
+                    .Where(t => !string.IsNullOrWhiteSpace(t))));
+
+            return CalculatePossibleWays(time, record);
+        }
+
+        private static long CalculatePossibleWays(long time, long record)
+        {
+            long res = 0;
+
+            for (int j = 0; j < time; j++)
+            {
+                long boatSpeed = j;
+                long currentDistance = (time - j) * boatSpeed;
+
+                if (currentDistance > record) res++;
+            }
 
             return res;
         }
