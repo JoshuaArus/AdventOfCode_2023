@@ -11,7 +11,7 @@
             {
                 //read string from file
                 inputs = File.ReadAllLines(inputName);
-                Console.WriteLine($"FirstPart : {FirstPart()}");
+                Console.WriteLine($"FirstPart  : {FirstPart()}");
                 Console.WriteLine($"SecondPart : {SecondPart()}");
             } catch (FileNotFoundException e)
             {
